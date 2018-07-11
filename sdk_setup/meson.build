@@ -31,12 +31,9 @@ add_global_arguments(common_cross_args + [
     '-mtext-section-literals',
     '-fno-exceptions',
     '-fno-rtti',
-    '-std=c++11'
     ], language: 'cpp')
 
 common_cross_link_args = [
-    '-g',
-    '-w',
     '-nostdlib',
     '-Wl,--no-check-sections',
     '-u', 'call_user_start',

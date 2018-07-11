@@ -1,7 +1,9 @@
-project('arduino-esp8266-meson', 'cpp', default_options: ['buildtype=minsize'])
+project('arduino-esp8266-meson', 'cpp', default_options: ['buildtype=minsize', 'cpp_std=c++11'])
 subdir('sdk_setup')
 
-add_global_arguments(['-Wno-non-virtual-dtor'], language: 'cpp')
+# There currently is no build type that combines -Os and -g so we specify -g heŕe exlplicitly (the debug information is required to be able to use the ESP8266 stacktrace analyser for debugging crashes)
+add_global_arguments(['-g', '-Wno-non-virtual-dtor', ], language: 'cpp')
+add_global_arguments(['-g'], language: 'c')
 
 sdk=subproject('esp8266_sdk')
 
