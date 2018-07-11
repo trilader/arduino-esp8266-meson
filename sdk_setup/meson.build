@@ -6,7 +6,7 @@ common_cross_args = [
     '-U__STRICT_ANSI__',
     '-DF_CPU=80000000L',
     '-DARDUINO=10605',
-    '-DARDUINO_ESP8266_ESP01',
+    '-DARDUINO_ESP8266_NODEMCU',
     '-DARDUINO_ARCH_ESP8266',
     '-DESP8266',
     '-g',
