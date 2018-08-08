@@ -9,12 +9,12 @@ You'll need to have some software installed and available in your PATH:
 * python
 
 ## Setup
-1. Download/Clone the ESP8266 Arduino SDK from [here](https://github.com/esp8266/arduino). You'll want version 2.4.1.
+1. Download/Clone the ESP8266 Arduino SDK from [here](https://github.com/esp8266/arduino). You'll want version 2.4.2.
 For example:
 ```bash
 git clone https://github.com/esp8266/arduino esp8266-sdk
 cd esp8266-sdk
-git checkout 2.4.1
+git checkout 2.4.2
 ```
 
 2. Download/Get the ESP8266/Arduino toolchanin:

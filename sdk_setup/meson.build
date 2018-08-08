@@ -5,15 +5,24 @@ common_cross_args = [
     '-DICACHE_FLASH',
     '-U__STRICT_ANSI__',
     '-DF_CPU=80000000L',
-    '-DARDUINO=10605',
+    '-DARDUINO=10805',
     '-DARDUINO_ESP8266_NODEMCU',
     '-DARDUINO_ARCH_ESP8266',
     '-DESP8266',
     '-g',
+    '-mlongcalls',
+    '-mtext-section-literals',
+    '-falign-functions=4',
+    '-MMD',
     '-ffunction-sections',
     '-fdata-sections',
-    '-falign-functions=4'
+    '-DLWIP_OPEN_SRC',
+    '-DTCP_MSS=1460',
 ]
+
+add_global_arguments(common_cross_args + [
+    '-x assembler-with-cpp',
+    ], language: 'asm')
 
 add_global_arguments(common_cross_args + [
     '-Wpointer-arith',
@@ -21,27 +30,28 @@ add_global_arguments(common_cross_args + [
     '-Wl,-EL',
     '-fno-inline-functions',
     '-nostdlib',
-    '-mlongcalls',
-    '-mtext-section-literals',
     '-std=gnu99',
     ], language: 'c')
 
 add_global_arguments(common_cross_args + [
-    '-mlongcalls',
-    '-mtext-section-literals',
     '-fno-exceptions',
     '-fno-rtti',
+    '-std=c++11',
+    '-DVTABLES_IN_FLASH',
     ], language: 'cpp')
 
 common_cross_link_args = [
+    '-g',
+    '-w',
     '-nostdlib',
     '-Wl,--no-check-sections',
-    '-u', 'call_user_start',
+    '-u", "app_entry',
     '-Wl,-static',
     '-Teagle.flash.4m.ld',
     '-Wl,--gc-sections',
-    '-Wl,-wrap,system_restart_local'
+    '-Wl,-wrap,system_restart_local',
+    '-Wl,-wrap,spi_flash_read',
 ]
 
 add_global_link_arguments(common_cross_link_args + ['-Wl,-wrap,__register_chipv6_phy'], language: 'c')
-add_global_link_arguments(common_cross_link_args + ['-Wl,-wrap,spi_flash_read'], language: 'cpp')
+add_global_link_arguments(common_cross_link_args, language: 'cpp')
