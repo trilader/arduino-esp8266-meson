@@ -9,6 +9,9 @@ strip = '/path/to/esp8266-sdk/tools/xtensa-lx106-elf/bin/xtensa-lx106-elf-strip'
 esp8266_base = '/path/to/code/esp8266-sdk'
 esptool = '/path/to/code/esp8266-sdk/tools/esptool/esptool'
 
+c_link_args = ['-nostdlib']
+cpp_link_args = ['-nostdlib']
+
 [host_machine]
 system = 'bare'
 cpu_family = 'xtensa'
